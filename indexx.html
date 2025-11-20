@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Login Glow Style</title>
+
+<style>
+    body {
+        margin: 0;
+        font-family: "Poppins", sans-serif;
+        overflow: hidden;
+        background: #021018;
+    }
+
+    /* Canvas background */
+    #canvas {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background: radial-gradient(circle, #031a25, #000814);
+        z-index: -1;
+    }
+
+    /* Login box */
+    .login-box {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background: rgba(255, 255, 255, 0.05);
+        border-radius: 20px;
+        padding: 40px;
+        width: 320px;
+        backdrop-filter: blur(10px);
+        box-shadow: 0 0 25px rgba(0, 200, 255, 0.4);
+        animation: fadeIn 2s ease;
+        border: 1px solid rgba(0, 200, 255, 0.3);
+    }
+
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+            transform: translate(-50%, -60%);
+        }
+        to {
+            opacity: 1;
+            transform: translate(-50%, -50%);
+        }
+    }
+
+    .logo {
+        font-size: 2.3rem;
+        font-weight: 600;
+        color: white;
+        text-align: center;
+        margin-bottom: 25px;
+        letter-spacing: 1px;
+    }
+
+    input {
+        width: 100%;
+        padding: 12px;
+        margin: 8px 0;
+        border-radius: 10px;
+        border: none;
+        outline: none;
+        background: rgba(255, 255, 255, 0.1);
+        color: white;
+        font-size: 1rem;
+    }
+
+    input::placeholder {
+        color: #bcd;
+    }
+
+    button {
+        width: 100%;
+        padding: 12px;
+        margin-top: 10px;
+        border-radius: 10px;
+        border: none;
+        background: #00b4ff;
+        color: white;
+        font-weight: 600;
+        cursor: pointer;
+        font-size: 1rem;
+        transition: 0.2s;
+    }
+
+    button:hover {
+        background: #00d4ff;
+        transform: translateY(-2px);
+    }
+
+    /* Glow decoration border */
+    .glow-edge {
+        position: absolute;
+        inset: 0;
+        border-radius: 20px;
+        pointer-events: none;
+        padding: 3px;
+        background: linear-gradient(
+                0deg,
+                #00eaff,
+                #ff00f5,
+                #ffae00,
+                #00eaff
+            )
+            border-box;
+        mask: linear-gradient(#fff 0 0) content-box,
+            linear-gradient(#fff 0 0);
+        mask-composite: exclude;
+        animation: spinBorder 4s linear infinite;
+    }
+
+    @keyframes spinBorder {
+        0% {
+            background: linear-gradient(
+                    0deg,
+                    #00eaff,
+                    #ff00f5,
+                    #ffae00,
+                    #00eaff
+                )
+                border-box;
+        }
+        100% {
+            background: linear-gradient(
+                    360deg,
+                    #00eaff,
+                    #ff00f5,
+                    #ffae00,
+                    #00eaff
+                )
+                border-box;
+        }
+    }
+</style>
+</head>
+
+<body>
+    <canvas id="canvas"></canvas>
+
+    <div class="login-box">
+        <div class="glow-edge"></div>
+        <div class="logo">Welcome to my portofolio</div>
+       <button onclick="location.href='index.html'">Masuk</button>
+    </div>
+
+<script>
+const canvas = document.getElementById("canvas");
+const ctx = canvas.getContext("2d");
+
+function resize() {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+}
+resize();
+window.onresize = resize;
+
+class Particle {
+    constructor() {
+        this.reset();
+    }
+    reset() {
+        this.x = Math.random() * canvas.width;
+        this.y = Math.random() * canvas.height;
+        this.size = Math.random() * 2 + 1;
+        this.speedY = Math.random() * 0.3 - 0.15;
+        this.alpha = Math.random() * 0.5 + 0.3;
+    }
+    draw() {
+        ctx.beginPath();
+        ctx.fillStyle = `rgba(0,200,255,${this.alpha})`;
+        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+        ctx.fill();
+        this.y += this.speedY;
+        if (this.y < 0) this.reset();
+    }
+}
+
+let particles = [];
+for (let i = 0; i < 120; i++) particles.push(new Particle());
+
+function animate() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    particles.forEach((p) => p.draw());
+    requestAnimationFrame(animate);
+}
+animate();
+</script>
+
+</body>
+</html>

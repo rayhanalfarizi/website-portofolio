@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Portofolio Rayhan Alfarizi</title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="style.css">
+
+  <!-- Sakura Effect -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sakura-js@latest/dist/sakura.css" />
+  <script src="https://cdn.jsdelivr.net/npm/sakura-js@latest/dist/sakura.js"></script>
+
+</head>
+
+<body>
+
+  <!-- NAVBAR -->
+  <header>
+    <nav>
+      <div class="logo">Rayhan Alfarizi</div>
+      <div>
+        <a onclick="showSection('home')" id="link-home" class="active">Beranda</a>
+        <a onclick="showSection('artikel')" id="link-artikel">Artikel</a>
+        <a onclick="showSection('profil')" id="link-profil">Profil</a>
+      </div>
+    </nav>
+  </header>
+
+  <!-- BERANDA -->
+  <section id="home">
+    <div class="hero-container">
+      <img src="WhatsApp Image 2025-11-17 at 11.46.32.jpeg">
+      <div class="hero-text">
+        <h1>Rayhan Alfarizi</h1>
+        <p>Lulusan SMK jurusan Teknik Jaringan Komputer Dan Telekomunikasi. Saya tertarik pada Web Development, Jaringan, dan UI/UX.</p>
+        <a class="btn" onclick="showSection('artikel')">Lihat Artikel</a>
+      </div>
+    </div>
+
+    <div class="about-box">
+      <h2>Tentang Saya</h2>
+      <p>
+        Saya adalah lulusan <b>SMK Negeri 2 Pengasih</b> jurusan <b>Teknik Jaringan Komputer Dan Telekomunkasi</b>.
+        Pengalaman PKL sebagai <b>operator podcast dan siaran radio</b> (audio mixing, OBS, mic setup, monitoring, switcher).
+        Saya memiliki ketertarikan pada dunia teknologi, desain, dan web development.
+      </p>
+    </div>
+
+    <div class="skills-box">
+      <h2>Kemampuan</h2>
+
+      <div class="skill"><label>Microsoft Office (Word, Excel, PowerPoint)</label>
+        <div class="bar"><span style="width: 90%"></span></div>
+      </div>
+
+      <div class="skill"><label>Canva (Desain Konten)</label>
+        <div class="bar"><span style="width: 85%"></span></div>
+      </div>
+
+      <div class="skill"><label>Kerja Sama Tim</label>
+        <div class="bar"><span style="width: 95%"></span></div>
+      </div>
+
+      <div class="skill"><label>Komunikasi</label>
+        <div class="bar"><span style="width: 90%"></span></div>
+      </div>
+
+      <div class="skill"><label>Jaringan Dasar (IP, Subnet, LAN/WLAN)</label>
+        <div class="bar"><span style="width: 80%"></span></div>
+      </div>
+
+      <div class="skill"><label>Audio Mixing / Podcast</label>
+        <div class="bar"><span style="width: 85%"></span></div>
+      </div>
+
+      <div class="skill"><label>HTML / CSS / JavaScript Dasar</label>
+        <div class="bar"><span style="width: 88%"></span></div>
+      </div>
+
+    </div>
+
+    <button class="btn" onclick="openCV()" style="margin-top: 10px;">Preview CV</button>
+  </section>
+
+  <!-- ARTIKEL -->
+  <section id="artikel">
+    <h2>Artikel Web Development</h2>
+
+    <div class="article-grid">
+
+      <div class="article-card">
+        <h3>Apa Itu Web Development?</h3>
+        <p class="short">Web Development adalah proses membangun sebuah website...</p>
+
+        <p class="full" style="display:none;">
+          Web development adalah proses membangun sebuah website, mulai dari struktur dasar, tampilan visual,
+          hingga sistem server dan database. Dunia Web Development terbagi menjadi tiga bagian:
+          <br><br>
+          <b>1. Front-End</b> — tampilan yang dilihat user.<br>
+          <b>2. Back-End</b> — sistem yang mengatur database, API, dan logic.<br>
+          <b>3. DevOps</b> — bagian server, deployment, dan maintenance.
+        </p>
+
+        <span class="read-more" onclick="toggleArticle(this)">Baca Selengkapnya</span>
+      </div>
+
+      <div class="article-card">
+        <h3>Front-End vs Back-End</h3>
+        <p class="short">Front-end adalah tampilan, sedangkan back-end adalah sistem di balik layar...</p>
+
+        <p class="full" style="display:none;">
+          <b>Front-end</b> fokus pada tampilan dan interaksi pengguna.<br>
+          <b>Back-end</b> fokus pada server, database, dan logic.<br>
+          Mereka bekerja sama agar website berfungsi sempurna.
+        </p>
+
+        <span class="read-more" onclick="toggleArticle(this)">Baca Selengkapnya</span>
+      </div>
+
+      <div class="article-card">
+        <h3>Kenapa Belajar HTML, CSS, dan JavaScript Penting?</h3>
+        <p class="short">Tiga bahasa dasar ini adalah fondasi utama web modern...</p>
+
+        <p class="full" style="display:none;">
+          HTML untuk struktur, CSS untuk tampilan, dan JavaScript untuk interaktif.
+          Semua framework modern berbasis tiga bahasa ini.
+        </p>
+
+        <span class="read-more" onclick="toggleArticle(this)">Baca Selengkapnya</span>
+      </div>
+
+      <div class="article-card">
+        <h3>Apa Itu UI/UX dalam Website?</h3>
+        <p class="short">UI/UX membantu membuat website menjadi lebih nyaman digunakan...</p>
+
+        <p class="full" style="display:none;">
+          UI berfokus pada visual.<br>
+          UX berfokus pada pengalaman user.<br>
+          Website yang baik = desain rapi + navigasi mudah.
+        </p>
+
+        <span class="read-more" onclick="toggleArticle(this)">Baca Selengkapnya</span>
+      </div>
+
+      <div class="article-card">
+        <h3>Cara Kerja Website dari Browser ke Server</h3>
+        <p class="short">Website bekerja melalui proses permintaan dari browser...</p>
+
+        <p class="full" style="display:none;">
+          Browser mengirim request ke server.<br>
+          Server memproses lalu mengirimkan file HTML, CSS, JS, atau API.
+        </p>
+
+        <span class="read-more" onclick="toggleArticle(this)">Baca Selengkapnya</span>
+      </div>
+
+      <div class="article-card">
+        <h3>Tips Memulai Belajar Web Development</h3>
+        <p class="short">Belajar coding tidak sesulit yang dibayangkan...</p>
+
+        <p class="full" style="display:none;">
+          Belajarlah dasar HTML → CSS → JS → Buat proyek kecil → Gunakan GitHub.
+          Konsistensi adalah kunci.
+        </p>
+
+        <span class="read-more" onclick="toggleArticle(this)">Baca Selengkapnya</span>
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- PROFIL -->
+  <section id="profil">
+    <h2>Profil Saya</h2>
+
+    <div id="profil-container">
+      <img src="WhatsApp Image 2025-11-17 at 11.46.32.jpeg">
+
+      <div class="profil-text">
+        <p>Halo, saya <b>Rayhan Alfarizi</b>, seorang Fresh Graduate dari SMK N 2 Pengasih jurusan Teknik Jaringan Komputer Dan Telekomunikasi.</p>
+        <p>Saya menyukai dunia audio, podcast, jaringan komputer, dan web development.</p>
+      </div>
+    </div>
+
+    <div class="profile-box">
+      <div class="info-title">Riwayat Pendidikan</div>
+      <p>• SMKN 2 Pengasih — (2023-2026) Teknik Jaringan Komputer & Telekomunikasi</p>
+      <p>• SMPN 1 Lendah — (2020-2023)</p>
+      <p>• SDN Wanagiri — (2014-2020)</p>
+    </div>
+
+    <div class="profile-box">
+      <div class="info-title">Pengalaman PKL</div>
+      <p>
+        • Operator podcast (sound check, switcher, mixer). <br>
+        • Monitoring siaran radio. <br>
+        • OBS Studio dasar. <br>
+        • Siaran Radio. <br>
+        • Operator Talkshow (Switcher & OBS).
+      </p>
+    </div>
+
+    <div class="profile-box">
+      <div class="info-title">Kontak</div>
+
+      <p>📧 Email:
+        <a style="color:#00eaff" href="mailto:rayhanalfarizi016@gmail.com">
+          rayhanalfarizi016@gmail.com
+        </a>
+      </p>
+
+      <div class="social-item">
+        <img src="https://cdn-icons-png.flaticon.com/512/2111/2111463.png" alt="Instagram">
+        <a href="https://instagram.com/alfarizxxy" target="_blank">@alfarizxxy</a>
+      </div>
+
+      <div class="social-item">
+        <img src="https://cdn-icons-png.flaticon.com/512/3046/3046120.png" alt="TikTok">
+        <a href="https://tiktok.com/@rayhanpalis" target="_blank">@rayhanpalis</a>
+      </div>
+    </div>
+
+  </section>
+
+  <footer>© 2025 Rayhan Alfarizi — All Rights Reserved.</footer>
+
+  <!-- MODAL PREVIEW CV -->
+  <div id="cvModal">
+    <div id="cvBox">
+      <button id="closeCV" onclick="closeCV()">Tutup</button>
+
+      <!-- tombol download sudah benar -->
+    <a id="downloadCV" href="CV_Rayhan_Alfarizi.jpeg" download="CV_Rayhan_Alfarizi.jpeg">Download CV</a>
+
+
+      <img id="cvImage" src="CV_Rayhan_Alfarizi.jpeg" alt="Preview CV">
+    </div>
+  </div>
+
+  <!-- JAVASCRIPT -->
+  <script src="script.js"></script>
+  <canvas id="flowerCanvas"></canvas>
+  <script src="flowers.js"></script>
+
+</body>
+
+</html>
