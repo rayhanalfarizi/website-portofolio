@@ -6,8 +6,14 @@
 <title>Login Glow Style</title>
 
 <style>
-    body {
+    /* Reset & base */
+    * {
         margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body {
         font-family: "Poppins", sans-serif;
         overflow: hidden;
         background: #021018;
@@ -33,26 +39,27 @@
         background: rgba(255, 255, 255, 0.05);
         border-radius: 20px;
         padding: 40px;
-        width: 320px;
+        width: 90%;
+        max-width: 360px;
         backdrop-filter: blur(10px);
         box-shadow: 0 0 25px rgba(0, 200, 255, 0.4);
-        animation: fadeIn 2s ease;
         border: 1px solid rgba(0, 200, 255, 0.3);
+        animation: fadeIn 1.5s ease forwards;
     }
 
     @keyframes fadeIn {
-        from {
+        0% {
             opacity: 0;
             transform: translate(-50%, -60%);
         }
-        to {
+        100% {
             opacity: 1;
             transform: translate(-50%, -50%);
         }
     }
 
     .logo {
-        font-size: 2.3rem;
+        font-size: 2rem;
         font-weight: 600;
         color: white;
         text-align: center;
@@ -60,6 +67,7 @@
         letter-spacing: 1px;
     }
 
+    /* Input fields (opsional jika mau form login) */
     input {
         width: 100%;
         padding: 12px;
@@ -79,7 +87,7 @@
     button {
         width: 100%;
         padding: 12px;
-        margin-top: 10px;
+        margin-top: 15px;
         border-radius: 10px;
         border: none;
         background: #00b4ff;
@@ -95,103 +103,89 @@
         transform: translateY(-2px);
     }
 
-    /* Glow decoration border */
+    /* Glow edge decoration */
     .glow-edge {
         position: absolute;
         inset: 0;
         border-radius: 20px;
         pointer-events: none;
         padding: 3px;
-        background: linear-gradient(
-                0deg,
-                #00eaff,
-                #ff00f5,
-                #ffae00,
-                #00eaff
-            )
-            border-box;
-        mask: linear-gradient(#fff 0 0) content-box,
-            linear-gradient(#fff 0 0);
+        background: linear-gradient(0deg, #00eaff, #ff00f5, #ffae00, #00eaff);
+        mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
         mask-composite: exclude;
         animation: spinBorder 4s linear infinite;
     }
 
     @keyframes spinBorder {
-        0% {
-            background: linear-gradient(
-                    0deg,
-                    #00eaff,
-                    #ff00f5,
-                    #ffae00,
-                    #00eaff
-                )
-                border-box;
+        0% { background: linear-gradient(0deg, #00eaff, #ff00f5, #ffae00, #00eaff); }
+        100% { background: linear-gradient(360deg, #00eaff, #ff00f5, #ffae00, #00eaff); }
+    }
+
+    /* Responsiveness */
+    @media screen and (max-width: 480px) {
+        .login-box {
+            padding: 30px 20px;
+            width: 90%;
         }
-        100% {
-            background: linear-gradient(
-                    360deg,
-                    #00eaff,
-                    #ff00f5,
-                    #ffae00,
-                    #00eaff
-                )
-                border-box;
+        .logo {
+            font-size: 1.6rem;
+        }
+        button {
+            padding: 10px;
+            font-size: 0.95rem;
         }
     }
 </style>
 </head>
-
 <body>
     <canvas id="canvas"></canvas>
 
     <div class="login-box">
         <div class="glow-edge"></div>
-        <div class="logo">Welcome to my portofolio</div>
-       <button onclick="location.href='indexx.html'">Masuk</button>
+        <div class="logo">Welcome to my Portfolio</div>
+        <!-- Tombol Masuk -->
+        <button onclick="location.href='indexx.html'">Masuk</button>
     </div>
 
 <script>
-const canvas = document.getElementById("canvas");
-const ctx = canvas.getContext("2d");
+    const canvas = document.getElementById("canvas");
+    const ctx = canvas.getContext("2d");
 
-function resize() {
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-}
-resize();
-window.onresize = resize;
-
-class Particle {
-    constructor() {
-        this.reset();
+    function resizeCanvas() {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
     }
-    reset() {
-        this.x = Math.random() * canvas.width;
-        this.y = Math.random() * canvas.height;
-        this.size = Math.random() * 2 + 1;
-        this.speedY = Math.random() * 0.3 - 0.15;
-        this.alpha = Math.random() * 0.5 + 0.3;
-    }
-    draw() {
-        ctx.beginPath();
-        ctx.fillStyle = `rgba(0,200,255,${this.alpha})`;
-        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-        ctx.fill();
-        this.y += this.speedY;
-        if (this.y < 0) this.reset();
-    }
-}
+    window.addEventListener('resize', resizeCanvas);
+    resizeCanvas();
 
-let particles = [];
-for (let i = 0; i < 120; i++) particles.push(new Particle());
+    class Particle {
+        constructor() { this.reset(); }
+        reset() {
+            this.x = Math.random() * canvas.width;
+            this.y = Math.random() * canvas.height;
+            this.size = Math.random() * 2 + 1;
+            this.speedY = Math.random() * 0.3 - 0.15;
+            this.alpha = Math.random() * 0.5 + 0.3;
+        }
+        draw() {
+            ctx.beginPath();
+            ctx.fillStyle = `rgba(0,200,255,${this.alpha})`;
+            ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+            ctx.fill();
+            this.y += this.speedY;
+            if(this.y < 0 || this.y > canvas.height) this.reset();
+        }
+    }
 
-function animate() {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    particles.forEach((p) => p.draw());
-    requestAnimationFrame(animate);
-}
-animate();
+    let particles = [];
+    for(let i=0; i<150; i++) particles.push(new Particle());
+
+    function animate() {
+        ctx.clearRect(0,0,canvas.width,canvas.height);
+        particles.forEach(p => p.draw());
+        requestAnimationFrame(animate);
+    }
+    animate();
 </script>
-
 </body>
 </html>
