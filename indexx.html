@@ -1,197 +1,251 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Login Glow Style</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Portofolio Rayhan Alfarizi</title>
 
-<style>
-    body {
-        margin: 0;
-        font-family: "Poppins", sans-serif;
-        overflow: hidden;
-        background: #021018;
-    }
+  <!-- CSS -->
+  <link rel="stylesheet" href="style.css">
 
-    /* Canvas background */
-    #canvas {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100vw;
-        height: 100vh;
-        background: radial-gradient(circle, #031a25, #000814);
-        z-index: -1;
-    }
+  <!-- Sakura Effect -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sakura-js@latest/dist/sakura.css" />
+  <script src="https://cdn.jsdelivr.net/npm/sakura-js@latest/dist/sakura.js"></script>
 
-    /* Login box */
-    .login-box {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        background: rgba(255, 255, 255, 0.05);
-        border-radius: 20px;
-        padding: 40px;
-        width: 320px;
-        backdrop-filter: blur(10px);
-        box-shadow: 0 0 25px rgba(0, 200, 255, 0.4);
-        animation: fadeIn 2s ease;
-        border: 1px solid rgba(0, 200, 255, 0.3);
-    }
-
-    @keyframes fadeIn {
-        from {
-            opacity: 0;
-            transform: translate(-50%, -60%);
-        }
-        to {
-            opacity: 1;
-            transform: translate(-50%, -50%);
-        }
-    }
-
-    .logo {
-        font-size: 2.3rem;
-        font-weight: 600;
-        color: white;
-        text-align: center;
-        margin-bottom: 25px;
-        letter-spacing: 1px;
-    }
-
-    input {
-        width: 100%;
-        padding: 12px;
-        margin: 8px 0;
-        border-radius: 10px;
-        border: none;
-        outline: none;
-        background: rgba(255, 255, 255, 0.1);
-        color: white;
-        font-size: 1rem;
-    }
-
-    input::placeholder {
-        color: #bcd;
-    }
-
-    button {
-        width: 100%;
-        padding: 12px;
-        margin-top: 10px;
-        border-radius: 10px;
-        border: none;
-        background: #00b4ff;
-        color: white;
-        font-weight: 600;
-        cursor: pointer;
-        font-size: 1rem;
-        transition: 0.2s;
-    }
-
-    button:hover {
-        background: #00d4ff;
-        transform: translateY(-2px);
-    }
-
-    /* Glow decoration border */
-    .glow-edge {
-        position: absolute;
-        inset: 0;
-        border-radius: 20px;
-        pointer-events: none;
-        padding: 3px;
-        background: linear-gradient(
-                0deg,
-                #00eaff,
-                #ff00f5,
-                #ffae00,
-                #00eaff
-            )
-            border-box;
-        mask: linear-gradient(#fff 0 0) content-box,
-            linear-gradient(#fff 0 0);
-        mask-composite: exclude;
-        animation: spinBorder 4s linear infinite;
-    }
-
-    @keyframes spinBorder {
-        0% {
-            background: linear-gradient(
-                    0deg,
-                    #00eaff,
-                    #ff00f5,
-                    #ffae00,
-                    #00eaff
-                )
-                border-box;
-        }
-        100% {
-            background: linear-gradient(
-                    360deg,
-                    #00eaff,
-                    #ff00f5,
-                    #ffae00,
-                    #00eaff
-                )
-                border-box;
-        }
-    }
-</style>
 </head>
 
 <body>
-    <canvas id="canvas"></canvas>
 
-    <div class="login-box">
-        <div class="glow-edge"></div>
-        <div class="logo">Welcome to my portofolio</div>
-       <button onclick="location.href='index.html'">Masuk</button>
+  <!-- NAVBAR -->
+  <header>
+    <nav>
+      <div class="logo">Rayhan Alfarizi</div>
+      <div>
+        <a onclick="showSection('home')" id="link-home" class="active">Beranda</a>
+        <a onclick="showSection('artikel')" id="link-artikel">Artikel</a>
+        <a onclick="showSection('profil')" id="link-profil">Profil</a>
+      </div>
+    </nav>
+  </header>
+
+  <!-- BERANDA -->
+  <section id="home">
+    <div class="hero-container">
+      <img src="WhatsApp Image 2025-11-17 at 11.46.32.jpeg">
+      <div class="hero-text">
+        <h1>Rayhan Alfarizi</h1>
+        <p>Lulusan SMK jurusan Teknik Jaringan Komputer Dan Telekomunikasi. Saya tertarik pada Web Development, Jaringan, dan UI/UX.</p>
+        <a class="btn" onclick="showSection('artikel')">Lihat Artikel</a>
+      </div>
     </div>
 
-<script>
-const canvas = document.getElementById("canvas");
-const ctx = canvas.getContext("2d");
+    <div class="about-box">
+      <h2>Tentang Saya</h2>
+      <p>
+        Saya adalah lulusan <b>SMK Negeri 2 Pengasih</b> jurusan <b>Teknik Jaringan Komputer Dan Telekomunkasi</b>.
+        Pengalaman PKL sebagai <b>operator podcast dan siaran radio</b> (audio mixing, OBS, mic setup, monitoring, switcher).
+        Saya memiliki ketertarikan pada dunia teknologi, desain, dan web development.
+      </p>
+    </div>
 
-function resize() {
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-}
-resize();
-window.onresize = resize;
+    <div class="skills-box">
+      <h2>Kemampuan</h2>
 
-class Particle {
-    constructor() {
-        this.reset();
-    }
-    reset() {
-        this.x = Math.random() * canvas.width;
-        this.y = Math.random() * canvas.height;
-        this.size = Math.random() * 2 + 1;
-        this.speedY = Math.random() * 0.3 - 0.15;
-        this.alpha = Math.random() * 0.5 + 0.3;
-    }
-    draw() {
-        ctx.beginPath();
-        ctx.fillStyle = `rgba(0,200,255,${this.alpha})`;
-        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-        ctx.fill();
-        this.y += this.speedY;
-        if (this.y < 0) this.reset();
-    }
-}
+      <div class="skill"><label>Microsoft Office (Word, Excel, PowerPoint)</label>
+        <div class="bar"><span style="width: 90%"></span></div>
+      </div>
 
-let particles = [];
-for (let i = 0; i < 120; i++) particles.push(new Particle());
+      <div class="skill"><label>Canva (Desain Konten)</label>
+        <div class="bar"><span style="width: 85%"></span></div>
+      </div>
 
-function animate() {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    particles.forEach((p) => p.draw());
-    requestAnimationFrame(animate);
-}
-animate();
-</script>
+      <div class="skill"><label>Kerja Sama Tim</label>
+        <div class="bar"><span style="width: 95%"></span></div>
+      </div>
+
+      <div class="skill"><label>Komunikasi</label>
+        <div class="bar"><span style="width: 90%"></span></div>
+      </div>
+
+      <div class="skill"><label>Jaringan Dasar (IP, Subnet, LAN/WLAN)</label>
+        <div class="bar"><span style="width: 80%"></span></div>
+      </div>
+
+      <div class="skill"><label>Audio Mixing / Podcast</label>
+        <div class="bar"><span style="width: 85%"></span></div>
+      </div>
+
+      <div class="skill"><label>HTML / CSS / JavaScript Dasar</label>
+        <div class="bar"><span style="width: 88%"></span></div>
+      </div>
+
+    </div>
+
+    <button class="btn" onclick="openCV()" style="margin-top: 10px;">Preview CV</button>
+  </section>
+
+  <!-- ARTIKEL -->
+  <section id="artikel">
+    <h2>Artikel Web Development</h2>
+
+    <div class="article-grid">
+
+      <div class="article-card">
+        <h3>Apa Itu Web Development?</h3>
+        <p class="short">Web Development adalah proses membangun sebuah website...</p>
+
+        <p class="full" style="display:none;">
+          Web development adalah proses membangun sebuah website, mulai dari struktur dasar, tampilan visual,
+          hingga sistem server dan database. Dunia Web Development terbagi menjadi tiga bagian:
+          <br><br>
+          <b>1. Front-End</b> — tampilan yang dilihat user.<br>
+          <b>2. Back-End</b> — sistem yang mengatur database, API, dan logic.<br>
+          <b>3. DevOps</b> — bagian server, deployment, dan maintenance.
+        </p>
+
+        <span class="read-more" onclick="toggleArticle(this)">Baca Selengkapnya</span>
+      </div>
+
+      <div class="article-card">
+        <h3>Front-End vs Back-End</h3>
+        <p class="short">Front-end adalah tampilan, sedangkan back-end adalah sistem di balik layar...</p>
+
+        <p class="full" style="display:none;">
+          <b>Front-end</b> fokus pada tampilan dan interaksi pengguna.<br>
+          <b>Back-end</b> fokus pada server, database, dan logic.<br>
+          Mereka bekerja sama agar website berfungsi sempurna.
+        </p>
+
+        <span class="read-more" onclick="toggleArticle(this)">Baca Selengkapnya</span>
+      </div>
+
+      <div class="article-card">
+        <h3>Kenapa Belajar HTML, CSS, dan JavaScript Penting?</h3>
+        <p class="short">Tiga bahasa dasar ini adalah fondasi utama web modern...</p>
+
+        <p class="full" style="display:none;">
+          HTML untuk struktur, CSS untuk tampilan, dan JavaScript untuk interaktif.
+          Semua framework modern berbasis tiga bahasa ini.
+        </p>
+
+        <span class="read-more" onclick="toggleArticle(this)">Baca Selengkapnya</span>
+      </div>
+
+      <div class="article-card">
+        <h3>Apa Itu UI/UX dalam Website?</h3>
+        <p class="short">UI/UX membantu membuat website menjadi lebih nyaman digunakan...</p>
+
+        <p class="full" style="display:none;">
+          UI berfokus pada visual.<br>
+          UX berfokus pada pengalaman user.<br>
+          Website yang baik = desain rapi + navigasi mudah.
+        </p>
+
+        <span class="read-more" onclick="toggleArticle(this)">Baca Selengkapnya</span>
+      </div>
+
+      <div class="article-card">
+        <h3>Cara Kerja Website dari Browser ke Server</h3>
+        <p class="short">Website bekerja melalui proses permintaan dari browser...</p>
+
+        <p class="full" style="display:none;">
+          Browser mengirim request ke server.<br>
+          Server memproses lalu mengirimkan file HTML, CSS, JS, atau API.
+        </p>
+
+        <span class="read-more" onclick="toggleArticle(this)">Baca Selengkapnya</span>
+      </div>
+
+      <div class="article-card">
+        <h3>Tips Memulai Belajar Web Development</h3>
+        <p class="short">Belajar coding tidak sesulit yang dibayangkan...</p>
+
+        <p class="full" style="display:none;">
+          Belajarlah dasar HTML → CSS → JS → Buat proyek kecil → Gunakan GitHub.
+          Konsistensi adalah kunci.
+        </p>
+
+        <span class="read-more" onclick="toggleArticle(this)">Baca Selengkapnya</span>
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- PROFIL -->
+  <section id="profil">
+    <h2>Profil Saya</h2>
+
+    <div id="profil-container">
+      <img src="WhatsApp Image 2025-11-17 at 11.46.32.jpeg">
+
+      <div class="profil-text">
+        <p>Halo, saya <b>Rayhan Alfarizi</b>, seorang Fresh Graduate dari SMK N 2 Pengasih jurusan Teknik Jaringan Komputer Dan Telekomunikasi.</p>
+        <p>Saya menyukai dunia audio, podcast, jaringan komputer, dan web development.</p>
+      </div>
+    </div>
+
+    <div class="profile-box">
+      <div class="info-title">Riwayat Pendidikan</div>
+      <p>• SMKN 2 Pengasih — (2023-2026) Teknik Jaringan Komputer & Telekomunikasi</p>
+      <p>• SMPN 1 Lendah — (2020-2023)</p>
+      <p>• SDN Wanagiri — (2014-2020)</p>
+    </div>
+
+    <div class="profile-box">
+      <div class="info-title">Pengalaman PKL</div>
+      <p>
+        • Operator podcast (sound check, switcher, mixer). <br>
+        • Monitoring siaran radio. <br>
+        • OBS Studio dasar. <br>
+        • Siaran Radio. <br>
+        • Operator Talkshow (Switcher & OBS).
+      </p>
+    </div>
+
+    <div class="profile-box">
+      <div class="info-title">Kontak</div>
+
+      <p>📧 Email:
+        <a style="color:#00eaff" href="mailto:rayhanalfarizi016@gmail.com">
+          rayhanalfarizi016@gmail.com
+        </a>
+      </p>
+
+      <div class="social-item">
+        <img src="https://cdn-icons-png.flaticon.com/512/2111/2111463.png" alt="Instagram">
+        <a href="https://instagram.com/alfarizxxy" target="_blank">@alfarizxxy</a>
+      </div>
+
+      <div class="social-item">
+        <img src="https://cdn-icons-png.flaticon.com/512/3046/3046120.png" alt="TikTok">
+        <a href="https://tiktok.com/@rayhanpalis" target="_blank">@rayhanpalis</a>
+      </div>
+    </div>
+
+  </section>
+
+  <footer>© 2025 Rayhan Alfarizi — All Rights Reserved.</footer>
+
+  <!-- MODAL PREVIEW CV -->
+  <div id="cvModal">
+    <div id="cvBox">
+      <button id="closeCV" onclick="closeCV()">Tutup</button>
+
+      <!-- tombol download sudah benar -->
+    <a id="downloadCV" href="CV_Rayhan_Alfarizi.jpeg" download="CV_Rayhan_Alfarizi.jpeg">Download CV</a>
+
+
+      <img id="cvImage" src="CV_Rayhan_Alfarizi.jpeg" alt="Preview CV">
+    </div>
+  </div>
+
+  <!-- JAVASCRIPT -->
+  <script src="script.js"></script>
+  <canvas id="flowerCanvas"></canvas>
+  <script src="flowers.js"></script>
 
 </body>
+
 </html>
