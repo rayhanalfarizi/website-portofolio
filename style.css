@@ -442,29 +442,11 @@ footer {
 }
 
 /* ===== RESPONSIVE ===== */
-@media(max-width: 1024px) {
-  .hero-container, #profil-container {
+@media(max-width: 768px) {
+  .hero-container,
+  #profil-container {
     flex-direction: column;
     text-align: center;
-  }
-
-  nav a {
-    margin-left: 15px;
-    font-size: 14px;
-  }
-
-  .hero-text h1 {
-    font-size: 32px;
-  }
-
-  .hero-text p {
-    font-size: 16px;
-  }
-}
-
-@media(max-width: 768px) {
-  section {
-    padding: 120px 20px 50px;
   }
 
   .article-grid {
@@ -472,23 +454,19 @@ footer {
     gap: 20px;
   }
 
-  .hero-container img {
-    width: 100px;
-  }
-
-  .profil-text {
-    max-width: 100%;
+  section {
+    padding: 120px 20px 50px;
   }
 }
 
 @media(max-width: 480px) {
   header {
-    padding: 12px 20px;
+    padding: 12px 15px;
   }
 
   nav a {
-    font-size: 13px;
     margin-left: 10px;
+    font-size: 13px;
   }
 
   .hero-text h1 {
@@ -499,7 +477,7 @@ footer {
     font-size: 15px;
   }
 
-  .btn {
-    padding: 10px 20px;
+  .hero-container img {
+    width: 100px;
   }
 }
